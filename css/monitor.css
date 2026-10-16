@@ -1,0 +1,139 @@
+/* ==========================================================================
+   monitor.css — Pantalla del monitor (réplica de la interfaz de 1024×768 del manual).
+   Todas las medidas están en "píxeles de diseño": monitor.js escala el conjunto.
+   Se aplica en: AMBAS ventanas.
+   ========================================================================== */
+.monitor-escala { position: relative; flex: none; }
+.monitor { position: absolute; left: 0; top: 0; width: 1024px; height: 768px; transform-origin: 0 0; background: #000; color: #ddd; display: flex; flex-direction: column; overflow: hidden; font-family: 'DejaVu Sans Condensed', 'Arial Narrow', 'Roboto Condensed', 'Liberation Sans Narrow', Arial, sans-serif; user-select: none; }
+.monitor.apagado, .pantalla-apagada { background: #050505; }
+.pantalla-apagada { flex: 1; }
+.standby { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 48px; color: #8cf; gap: 10px; }
+.standby small { font-size: 20px; color: #888; }
+
+/* ---------- Encabezado ---------- */
+.cabecera { flex: 0 0 28px; background: #d9d9d9; color: #111; display: flex; align-items: center; gap: 16px; padding-left: 10px; font-size: 15px; }
+.cabecera svg { width: 20px; height: 20px; vertical-align: middle; }
+.cab-cama b { margin-left: 4px; }
+.cab-tipo svg { margin-right: 3px; }
+.ico-silencio { color: #c00; display: inline-flex; align-items: center; position: relative; visibility: hidden; }
+.ico-silencio::after { content: attr(data-seg) 's'; font-size: 13px; margin-left: 3px; font-weight: 700; }
+.area-alarma { margin-left: auto; flex: 0 0 430px; height: 100%; display: flex; align-items: center; padding: 0 12px; font-weight: 700; font-size: 17px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.area-alarma.nivel-alta { background: #ff1c1c; color: #fff; }
+.area-alarma.nivel-alta.parpadeo { background: #7a0000; }
+.area-alarma.nivel-media { background: #ffe600; color: #000; }
+.area-alarma.nivel-baja { background: #19e6ff; color: #000; }
+
+/* ---------- Zona principal ---------- */
+.zona { flex: 1; display: flex; min-height: 0; }
+.col-ondas { flex: 0 0 62.5%; display: flex; flex-direction: column; border-right: 1px solid #1c1c1c; min-width: 0; }
+.ondas { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.fila-onda { flex: 1; position: relative; min-height: 0; border-bottom: 1px solid #101010; }
+.fila-onda .cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.etq-ecg { position: absolute; left: 6px; top: 3px; z-index: 2; display: flex; gap: 12px; font-size: 13px; font-weight: 700; pointer-events: none; }
+.etq-ecg span { font-weight: 400; opacity: .85; }
+.cal-mv { position: absolute; right: 8px; bottom: 6px; height: 40px; border-left: 2px solid #e6e6e6; z-index: 2; pointer-events: none; }
+.cal-mv span { position: absolute; left: 4px; bottom: 0; font-size: 11px; color: #aaa; white-space: nowrap; }
+
+.col-num { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.bloque { position: relative; flex: 1; padding: 4px 8px; border-bottom: 1px solid #1b1b1b; min-height: 0; overflow: hidden; }
+.bloque .tit { display: flex; align-items: baseline; gap: 6px; font-size: 14px; }
+.bloque .tit b { font-size: 15px; }
+.bloque .tit small { font-size: 11px; opacity: .8; }
+.bloque .num { position: absolute; right: 12px; bottom: 2px; font-size: 62px; line-height: 1; font-weight: 400; letter-spacing: -1px; }
+.b-hr { flex: 1.7; }
+.b-hr .num { font-size: 112px; right: 70px; bottom: 6px; }
+.hr-extra { position: absolute; right: 8px; top: 6px; display: flex; flex-direction: column; align-items: flex-end; gap: 3px; font-size: 13px; color: #cfcfcf; }
+.ico-alarma-off { color: #e22; visibility: hidden; }
+.ico-alarma-off svg { width: 18px; height: 18px; }
+.lims { position: absolute; left: 8px; top: 28px; display: flex; flex-direction: column; gap: 3px; font-size: 12px; line-height: 1; }
+.par { flex: 1.15; display: flex; min-height: 0; }
+.par .bloque { flex: 1; border-right: 1px solid #1b1b1b; }
+.par .b-pr .num { font-size: 52px; }
+.b-st { flex: 1; }
+.st-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 8px; margin-top: 4px; color: #20c030; font-size: 15px; }
+.st-it i { font-style: normal; font-size: 11px; margin-right: 3px; opacity: .85; }
+.st-it b { font-weight: 400; font-size: 22px; }
+.b-temp .tfila { display: flex; justify-content: flex-end; align-items: baseline; gap: 12px; color: #e8a000; margin-top: 3px; }
+.b-temp .tfila i { font-style: normal; font-size: 13px; font-weight: 700; }
+.b-temp .tfila b { font-weight: 400; font-size: 26px; min-width: 62px; text-align: right; }
+.b-co2 { flex: 1; color: #f0e040; }
+.b-co2 .cfila { display: inline-flex; align-items: baseline; gap: 6px; margin-right: 18px; }
+.b-co2 .cfila i { font-style: normal; font-size: 12px; }
+.b-co2 .cfila b { font-weight: 400; font-size: 30px; }
+.b-co2 .cfila small { font-size: 10px; }
+.b-art { flex: .8; }
+.art-num { position: absolute; right: 12px; bottom: 4px; font-size: 40px; }
+.art-num b { font-weight: 400; }
+.art-num span { font-size: 22px; margin-left: 8px; }
+.barras { position: absolute; right: 8px; bottom: 10px; display: flex; flex-direction: column; gap: 2px; }
+.barras i { display: block; width: 11px; height: 5px; background: #0a3a3a; }
+.barras i.on { background: #10f0f0; }
+
+/* ---------- PANI (abajo a la izquierda) ---------- */
+.b-nibp { flex: 0 0 142px; border-top: 1px solid #1c1c1c; color: #e8dcc0; }
+.col-ondas .b-nibp .num, .nibp-num { position: absolute; left: 70px; bottom: 26px; font-size: 54px; color: #e8dcc0; white-space: nowrap; letter-spacing: -1px; }
+.nibp-num.midiendo { color: #ffd34d; }
+.nibp-modo { margin-left: 24px; font-size: 13px; color: #bbb; }
+.nibp-pr { margin-left: auto; font-size: 13px; color: #bbb; }
+.nibp-lims { position: absolute; left: 8px; top: 30px; display: flex; flex-direction: column; font-size: 12px; gap: 3px; }
+.nibp-pie { position: absolute; left: 8px; right: 8px; bottom: 4px; display: flex; justify-content: space-between; font-size: 13px; color: #aaa; }
+
+/* ---------- Resaltado de alarma por parámetro ---------- */
+.bloque.en-alarma[data-nivel='alta'] { background: #5a0000; }
+.bloque.en-alarma[data-nivel='media'] { background: #4a4200; }
+.bloque.en-alarma[data-nivel='baja'] { background: #00323a; }
+
+/* ---------- Vista Fuente grande ---------- */
+.fuente { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.fuente .bloque { border: 1px solid #1a1a1a; }
+.fuente .bloque .num, .fuente .nibp-num { font-size: 190px; right: 24px; bottom: 6px; left: auto; }
+.fuente .b-nibp { flex: none; }
+.fuente .b-nibp .nibp-num { font-size: 88px; left: 20px; bottom: 36px; right: auto; }
+
+/* ---------- Vistas de tendencias ---------- */
+.vista-tend { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.tend-fila { flex: 1; display: flex; border-bottom: 1px solid #1a1a1a; min-height: 0; }
+.tend-fila b { flex: 0 0 70px; padding: 6px; font-size: 16px; }
+.cv-tend { flex: 1; width: 100%; height: 100%; min-width: 0; }
+.vista-tend.oxy .oxy-num { display: flex; flex: 0 0 150px; }
+.vista-tend.oxy .oxy-num .bloque { flex: 1; border-right: 1px solid #222; }
+
+/* ---------- Barra de estado y teclas ---------- */
+.barra-estado { flex: 0 0 24px; display: flex; align-items: center; justify-content: flex-end; gap: 14px; background: #101010; padding-right: 10px; font-size: 15px; color: #ddd; }
+.barra-estado svg { width: 20px; height: 20px; vertical-align: middle; }
+.barra-estado .marca { margin-right: auto; padding-left: 10px; color: #8cf; font-weight: 700; }
+.ico-ca { color: #e08a30; }
+.ico-bat { color: #aaa; display: inline-flex; align-items: center; gap: 3px; }
+.ico-bat i { font-style: normal; font-size: 12px; }
+.ico-red { color: #8a8a8a; }
+.teclas { flex: 0 0 64px; display: flex; background: #bdbdbd; gap: 2px; padding: 2px; }
+.teclas-medio { flex: 1; display: flex; gap: 2px; min-width: 0; }
+.tecla { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; border: 1px solid #8c8c8c; border-radius: 2px; background: linear-gradient(#f7f7f7, #d2d2d2); color: #1a1a1a; font-size: 11px; padding: 2px; }
+.tecla em { font-style: normal; text-align: center; line-height: 1.05; font-size: 11px; }
+.tecla svg { width: 30px; height: 30px; }
+.tecla:active { filter: brightness(.9); }
+.tecla-mute { flex: 0 0 96px; background: linear-gradient(#ffd83a, #f0b800); }
+.tecla-nav { flex: 0 0 34px; background: #cfcfcf; }
+.tecla-nav svg { width: 16px; height: 16px; }
+.tecla-menu { flex: 0 0 96px; background: linear-gradient(#17795a, #0b5a3e); color: #fff; }
+
+/* ---------- Capa de diálogos dentro del monitor ---------- */
+.capa-dialogo { position: absolute; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center; }
+.capa-dialogo.abierta { background: #0007; }
+.dialogo { max-width: 96%; max-height: 92%; display: flex; flex-direction: column; background: #ececec; color: #111; border: 2px solid #5a5a5a; border-radius: 6px; box-shadow: 0 8px 30px #000a; font-family: system-ui, Arial, sans-serif; }
+.dialogo-cab { display: flex; justify-content: space-between; align-items: center; background: #9a9a9a; padding: 6px 10px; font-weight: 700; font-size: 16px; }
+.dialogo-cab .cerrar { background: #c33; color: #fff; border: none; width: 28px; height: 24px; border-radius: 3px; }
+.dialogo-cuerpo { padding: 12px; overflow: auto; font-size: 15px; }
+.toast { position: absolute; left: 50%; bottom: 90px; transform: translateX(-50%); background: #000d; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 18px; border: 1px solid #666; }
+.rejilla-menu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.btn-menu { padding: 16px 8px; font-size: 16px; background: #fff; border: 1px solid #888; border-radius: 4px; }
+.btn-menu:hover { background: #e0f0ff; }
+.alarma-cfg { display: flex; gap: 10px; min-height: 340px; }
+.alarma-lista { flex: 0 0 140px; display: flex; flex-direction: column; gap: 2px; max-height: 420px; overflow: auto; }
+.item-lista { text-align: left; padding: 7px 8px; background: #dadada; border: 1px solid #aaa; }
+.item-lista.sel { background: #0b5a3e; color: #fff; }
+.alarma-panel { flex: 1; min-width: 0; }
+.scroll-v { max-height: 420px; overflow: auto; }
+.arr-item { margin-bottom: 10px; }
+.arr-item canvas { width: 100%; background: #000; display: block; }
+.tend-rotulo { font-weight: 700; margin-top: 6px; }

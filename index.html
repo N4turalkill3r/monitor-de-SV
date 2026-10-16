@@ -1,0 +1,43 @@
+<!doctype html>
+<!--
+  index.html — Punto de entrada del Simulador de monitor de signos vitales (PWA).
+  Estructura: #escena > #bisel (marco del monitor) > #pantalla-host (pantalla 1024×768 escalada)
+  + #frente (panel frontal con teclas físicas) y <aside id="instructor"> (cajón del instructor).
+  La ventana de proyección se abre con ?modo=proyeccion y sólo muestra la pantalla.
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14171a">
+  <meta name="description" content="Simulador de monitor de signos vitales para entrenamiento de paramédicos, con simulador de arritmias y panel del instructor.">
+  <title>Monitor de signos vitales · Simulador</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/monitor.css">
+  <link rel="stylesheet" href="css/instructor.css">
+</head>
+<body data-rol="maestro">
+  <main id="escena">
+    <div id="bisel">
+      <div id="pantalla-host"></div>
+      <div id="frente">
+        <div class="marca-modelo">SIMULADOR<small>basado en monitores iM50/60/70/80 · uso didáctico</small></div>
+        <div class="leds" aria-hidden="true"><i class="led verde" id="led-verde"></i><i class="led naranja" id="led-naranja"></i></div>
+        <button class="tecla-fisica naranja" id="k-alarma" title="Silenciar alarmas"><span class="cap">Alarma</span></button>
+        <button class="tecla-fisica" id="k-pani" title="Iniciar / detener PANI"><span class="cap">PANI</span></button>
+        <button class="tecla-fisica" id="k-tend" title="Vista de tendencias"><span class="cap">Tendencia</span></button>
+        <button class="tecla-fisica" id="k-congelar" title="Congelar ondas"><span class="cap">Congelar</span></button>
+        <button class="tecla-fisica" id="k-menu" title="Menú principal"><span class="cap">Menú</span></button>
+        <button class="perilla" id="k-perilla" aria-label="Perilla (abre el menú)"></button>
+        <button class="btn-encendido" id="k-encendido" aria-label="Encender / apagar" title="Encender / apagar"></button>
+      </div>
+    </div>
+  </main>
+  <aside id="instructor" aria-label="Panel del instructor"></aside>
+  <noscript>Esta aplicación necesita JavaScript.</noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
